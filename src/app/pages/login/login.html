@@ -1,0 +1,18 @@
+<div class="login-wrapper">
+    <div class="login-card">
+        <h3>Login</h3>
+        <form>
+            <div class="mb-3">
+                <label class="form-label">Email ID</label>
+                <input type="email" [(ngModel)]=" loginObj.email" name="email" class="form-control"
+                    placeholder="Enter your email">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" [(ngModel)]=" loginObj.password" name="password " class="form-control"
+                    placeholder="Enter your password">
+            </div>
+            <button type="button" (click)=" Onlogin()" class="btn btn-custom w-100 text-white">Login</button>
+        </form>
+    </div>
+</div>
