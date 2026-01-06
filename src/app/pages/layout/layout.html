@@ -7,21 +7,20 @@
         <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="datatypes">Datatypes</a>
+                    <a class="nav-link" routerLink= "dashboard"> Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="databinding">Databinding</a>
+                    <a class="nav-link" routerLink="batch">BatchMaster</a>
                 </li>
+                
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="ng-if">ng-IF</a>
+                    <a class="nav-link" routerLink="link3">Link3</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="ng-for">ng-For</a>
-                </li>
+                
                  
             </ul>
             <form class="d-flex">
-                 <button class="btn btn outline-white text-white" type="button">{{loggedUserData.email}}</button>
+                 <button class="btn btn outline-white text-white" type="button">{{loggedUserData?.email}}</button>
                  <button class="btn btn-primary" type="button" (click)="OnLogoff()">LogOff</button>
             </form>
         </div>
