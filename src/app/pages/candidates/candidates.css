@@ -1,0 +1,187 @@
+/* General page styling */
+body {
+    background-color: #f8f9fa; /* light modern background */
+    font-family: 'Roboto', sans-serif;
+    color: #343a40;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container spacing */
+.container-main {
+    padding: 20px 15px;
+}
+
+/* Card styling */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    background-color: #13c9a1;
+}
+
+/* Card header section */
+.section-hader, .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 35px;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    height:85px;
+    border-radius: 20px;
+    width:10 ;
+}
+
+.section-hader i, .section-header i {
+    font-size: 1.5rem;
+    color: #0d6efd;
+     align-items: center;
+}
+
+.section-hader h4, .section-header h4 {
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+/* Form styling */
+.form-label {
+    font-weight: 500;
+    color: #495057;
+}
+
+.form-control {
+    border-radius: 8px;
+    padding: 10px 12px;
+    border: 1px solid #ced4da;
+    transition: all 0.3s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* Form select */
+.form-select {
+    border-radius: 8px;
+    padding: 10px 12px;
+    border: 1px solid #ced4da;
+}
+
+/* Switch toggle */
+.form-check-input {
+    width: 50px;
+    height: 25px;
+    cursor: pointer;
+}
+
+/* Buttons */
+.btn-custom {
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-success-custom {
+    background-color: #198754;
+    border: none;
+    color: #fff;
+}
+
+.btn-success-custom:hover {
+    background-color: #19ca77;
+}
+
+.btn-reset-custom {
+    background-color: #bd9213;
+    border: none;
+    color: #343a40;
+}
+
+.btn-reset-custom:hover {
+    background-color: #e0a800;
+}
+
+/* Action buttons in table */
+.action-btn {
+    border: none;
+    border-radius: 6px;
+    padding: 5px 10px;
+    margin: 0 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-success-customer {
+    background-color: #0dcaf0;
+    color: #fff;
+}
+
+.btn-success-customer:hover {
+    background-color: #31d2f2;
+}
+
+.btn-danger-customer {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn-danger-customer:hover {
+    background-color: #bb2d3b;
+}
+
+/* Table styling */
+.table-card {
+    overflow-x: auto;
+}
+
+.table {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.table thead th {
+    background-color: #e9ecef;
+    font-weight: 600;
+    border: none;
+}
+
+.table tbody tr {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+}
+
+.table tbody td {
+    vertical-align: middle;
+    padding: 12px;
+    border: none;
+}
+
+/* Status badges */
+.badge-status {
+    padding: 6px 12px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.badge-active {
+    background-color: #198754;
+    color: #fff;
+}
+
+.badge-inactive {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+/* Responsive spacing */
+@media (max-width: 992px) {
+    .d-flex {
+        flex-direction: column !important;
+    }
+}

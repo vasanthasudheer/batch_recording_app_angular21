@@ -1,0 +1,161 @@
+<div class="container container-main d-flex gap-4">
+    <div class="container container-main">
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="card form-card">
+                    <div class="card-body p-5">
+                        <div class="section-hader">
+                            <i class="bi bi-person-plus-fill"></i>
+                            <h4>Add New Candidate</h4>
+                        </div>
+
+                        <form [formGroup]="candidateForm" (ngSubmit)="onSaveCandidate( )">
+                            <div class="mb-3">
+                                <label for="fullName" class="form-label">
+                                    <i class="bi bi-person-fill"></i>FullName
+                                </label>
+                                <input type="text" formControlName="fullName" class="form-control" id="fullName"
+                                    placeholder="Enter full name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">
+                                    <i class="bi bi-envelope-fill"></i>Email
+                                </label>
+                                <input type="email" formControlName="email" class="form-control" id="email"
+                                    placeholder="Enter Email">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="mobileNumber" class="form-label">
+                                    <i class="bi bi-telephone-fill"></i>MobileNo
+                                </label>
+                                <input type="tel" formControlName="mobileNumber" class="form-control" id="mobileNumber"
+                                    placeholder="Enter Mobile no">
+                            </div>
+                            <!-- <div class="mb-2">
+                                <label for="paasword" class="form-label">
+                                   <i class="bi bi-lock-fill"></i>Password
+                                </label>
+                                <input type="password" formControlName="password" class="form-control" id="password"
+                                    placeholder="Enter password">
+                            </div> -->
+
+                            <div class="mb-2">
+                                <label for="password" class="form-label">
+                                    <i class="bi bi-lock-fill me-2"></i>Password
+                                </label>
+                                <input type="password" formControlName="password" id="password"
+                                    placeholder="Enter password" class="form-control" autocomplete="new-password">
+                            </div>
+
+
+                            <div class="mb-2">
+                                <label for="role" class="form-label">
+                                    <i class="fas fa-user-tie me-2"></i>Role
+                                </label>
+                                <select id="role" class="form-select" formControlName="role">
+                                    <option value="">Select role</option>
+                                    <option value="SuperAdmin">Admin</option>
+                                    <option value="candidate">Candidate</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-2">
+                                <div class="form-check form-switch">
+                                    <input formControlName="isActive" class="form-check-input" type="checkbox"
+                                        id="isActive">
+                                    <label class="form-check-label fw-semibold" for="isActive">
+                                        <i class="fas fa-toggle-on me-2"></i>Active Status
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="d-grid gap-2">
+                                @if(candidateForm.controls['candidateId'].value==0){
+                                <button type="submit" class="btn btn-custom btn-success-custom">
+                                    <i class="bi bi-save-fill"></i>
+                                    Create Candidate
+                                </button>
+                                }@else{
+                               <button type="button" class="btn btn-primary" (click)=" onUpdateCandidate()">
+                                    <i class="bi bi-pencil-square"></i>
+                                    Update Candidate
+                                </button>
+                                }
+                               
+
+
+
+                                <button type="button" (click)="resetForm()" class="btn btn-custom btn-reset-custom">
+                                    <i class="bi bi-arrow-clockwise"></i>
+                                    Reset Form
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-lg-8">
+                <div class="card table-card">
+                    <div class="card body p-4">
+                        <div class="section-header">
+                            <i class="bi bi-card-list me-2"></i>
+                            <h4>Candidates List</h4>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Sr No</th>
+                                        <th>FullName</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr *ngFor="let candidate of candidateList; let sr = index">
+                                        <td><strong>{{ sr + 1 }}</strong></td>
+                                        <td>{{ candidate.fullName }}</td>
+                                        <td>{{ candidate.email }}</td>
+                                        <td>{{ candidate.role }}</td>
+                                        <td>
+                                            <span
+                                                [class]="candidate.isActive ? 'badge-status badge-active' : 'badge-status badge-inactive'">
+                                                {{ candidate.isActive ? 'Active' : 'Inactive' }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <button type="submit" (click)="onEdit(candidate)"
+                                                class="action-btn btn-success-customer">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </button>
+                                            <button (click)="ondelete(candidate.candidateId)">
+                                                <button type="button" class="btn btn-sm btn-danger"
+                                                    (click)="ondelete(candidate.candidateId)">
+                                                    Delete
+                                                </button>
+
+
+
+                                                <i class="bi bi-trash-fill"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

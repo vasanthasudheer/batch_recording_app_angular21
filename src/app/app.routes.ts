@@ -4,6 +4,7 @@ import { Layout } from './pages/layout/layout';
 import { BatchMaster } from './pages/batch-master/batch-master';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { authGuard } from './core/guard/auth-guard';
+import { Candidates } from './pages/candidates/candidates';
 
 export const routes: Routes = [
   {
@@ -22,6 +23,10 @@ export const routes: Routes = [
       {
         path: 'batch',
         component: BatchMaster,
+      },
+       {
+        path: 'candidate',
+        component: Candidates,
       },
       {
         path: 'dashboard',
