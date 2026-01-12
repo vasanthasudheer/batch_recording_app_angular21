@@ -1,0 +1,194 @@
+/* ================================
+   FULL PAGE BACKGROUND
+================================ */
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #28bce0, #0acebe);
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  color: #48d848;
+  margin: 0;
+}
+
+/* ================================
+   MAIN CONTAINER
+================================ */
+.container-fluid {
+  padding-top: 40px;
+  padding-bottom: 40px;
+    background: linear-gradient(135deg, #9298cf, #0d9abd);
+}
+
+/* ================================
+   GLASS CARD STYLE
+================================ */
+.glass-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* Hover effect for cards */
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+
+/* ================================
+   CARD HEADER
+================================ */
+.card .card-body .section-header h4 {
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.card-header, .modal-header {
+  background: linear-gradient(45deg, #97b3bb, #d1d4d8);
+  color: #fff;
+  border-radius: 18px 18px 0 0;
+  border: none;
+  padding: 15px 20px;
+}
+
+/* ================================
+   FORM CONTROLS
+================================ */
+.form-control, .form-select, textarea {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: #fff;
+}
+
+.form-control::placeholder, .form-select::placeholder, textarea::placeholder {
+  color: #300f0f;
+}
+
+.form-control:focus, .form-select:focus, textarea:focus {
+  background: rgba(255,255,255,0.25);
+  box-shadow: none;
+  color: #0b1303;
+}
+
+/* ================================
+   SWITCH / TOGGLE
+================================ */
+.form-check-input {
+  cursor: pointer;
+}
+
+/* ================================
+   BUTTONS
+================================ */
+.btn-btn-success-custom {
+  background: linear-gradient(45deg, #00b09b, #96c93d);
+  border: none;
+  color: #9c1147;
+  border-radius: 25px;
+  padding: 8px 20px;
+  transition: all 0.3s ease;
+}
+
+.btn-btn-success-custom:hover {
+  transform: translateY(-2px) scale(1.05);
+}
+
+.btn-btn-warning {
+  background: linear-gradient(45deg, #f7971e, #ffd200);
+  border: none;
+  color: #000;
+  border-radius: 25px;
+  padding: 8px 20px;
+  transition: all 0.3s ease;
+}
+
+.btn-btn-warning:hover {
+  transform: translateY(-2px) scale(1.05);
+}
+
+.btn-secondary-custom {
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  border: none;
+  color: #fff;
+  border-radius: 25px;
+  padding: 8px 20px;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary-custom:hover {
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* ================================
+   TABLE
+================================ */
+.table-custom {
+  color: #fff;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table-custom thead {
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+}
+
+.table-custom tbody tr {
+  transition: all 0.3s ease;
+}
+
+.table-custom tbody tr:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ================================
+   BADGES
+================================ */
+.badge-active {
+  background-color: #28a745;
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: #ffffff;
+}
+
+.badge-inactive {
+  background-color: #dc3545;
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: #fff;
+}
+
+/* ================================
+   SEARCH BOX ICON
+================================ */
+.search-box {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.search-box i {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: #fff;
+}
+
+.search-box input {
+  padding-left: 38px;
+}
+
+/* ================================
+   ANIMATION FOR CARDS
+================================ */
+.card, .glass-card {
+  animation: fadeUp 0.8s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

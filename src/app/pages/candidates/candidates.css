@@ -9,15 +9,15 @@ body {
 
 /* Container spacing */
 .container-main {
-    padding: 20px 15px;
+    padding:15px 10px;
 }
 
 /* Card styling */
 .card {
     border: none;
-    border-radius: 12px;
+    border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    background-color: #13c9a1;
+    background-color: #afecdf;
 }
 
 /* Card header section */

@@ -1,21 +1,25 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { CandidateSerives } from '../../core/guard/services/batch/candidates/candidate-serives';
 import { IAPIResponse } from '../../model/interfaces/Common.Model';
 import { CandidatesModel } from '../../model/classes/candidate.Model';
 import { NgFor } from '@angular/common';
-
+import { signal } from '@angular/core';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-candidates',
   imports: [ReactiveFormsModule,NgFor],
   templateUrl: './candidates.html',
   styleUrl: './candidates.css',
 })
-export class Candidates {
+export class Candidates implements OnInit, OnDestroy {
 
   candidateForm: FormGroup = new FormGroup({});
   candidateSrv = inject(CandidateSerives)
-  candidateList: CandidatesModel[] = [];
+  
+    subscription: Subscription = new Subscription()
+  //  candidateList = signal<CandidatesModel[]>([]);
+        candidateList:CandidatesModel[]= [];
 
   constructor() {
     this.initializeForm();
@@ -28,7 +32,7 @@ export class Candidates {
 
 
   getCandidates() {
-    this.candidateSrv.getAllCandidates().subscribe({
+  this.subscription=  this.candidateSrv.getAllCandidates().subscribe({
       next: (res: IAPIResponse) => {
         this.candidateList = res.data
       }
@@ -73,7 +77,7 @@ export class Candidates {
       debugger;
       alert('Candidate updated');
       this.getCandidates();
-      // this.resetForm();
+      this.resetForm();
     },
     error: (err) => {
       console.error(err);
@@ -109,7 +113,9 @@ export class Candidates {
     }
   });
 }
-
+ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
 resetForm(){
   this.candidateForm.reset();

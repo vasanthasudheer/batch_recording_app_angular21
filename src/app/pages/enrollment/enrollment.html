@@ -1,0 +1,105 @@
+<div class="container-fluid py-5">
+  <div class="row g-4">
+
+    <!-- Add Enrollment Form -->
+    <div class="col-lg-5">
+      <div class="card glass-card">
+        <div class="card-body p-4">
+          <h4 class="mb-4"><i class="bi bi-plus-circle"></i> Add New Enrollment</h4>
+
+          <form [formGroup]="enrollmetForm" (ngSubmit)="onSaveEnrollment()">
+
+            <!-- Batch Selection -->
+            <div class="mb-3">
+              <label for="batchId" class="form-label">Select Batch</label>
+              <select id="batchId" class="form-select" formControlName="batchId">
+                <option [value]="null">Select a batch</option>
+                <option *ngFor="let item of batchDate()" [value]="item.batchId">
+                  {{ item.batchName }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Candidate Selection -->
+            <div class="mb-3">
+              <label for="candidateId" class="form-label">Select Candidate</label>
+              <select id="candidateId" class="form-select" formControlName="candidateId">
+                <option [value]="null">Select a candidate</option>
+                <option *ngFor="let item of candidateList$ | async" [value]="item.candidateId">
+                  {{ item.fullName }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Enrollment Date -->
+            <div class="mb-3">
+              <label for="enrollmentDate" class="form-label">Enrollment Date</label>
+              <input type="datetime-local" class="form-control" id="enrollmentDate" formControlName="enrollmentDate">
+            </div>
+
+            <!-- Active toggle -->
+            <div class="mb-2 form-check form-switch">
+              <input type="checkbox" class="form-check-input" id="isActive" formControlName="isActive">
+              <label class="form-check-label fw-semibold" for="isActive">
+                <i class="fas fa-toggle-on me-2"></i>Active Status
+              </label>
+            </div>
+
+            <!-- Buttons -->
+            <div class="d-flex gap-2">
+              <button type="submit" class="btn btn-btn-success-custom">
+                <i class="bi bi-save me-2"></i> Save
+              </button>
+              <button type="button" class="btn btn-secondary-custom" (click)="resetForm()">
+                <i class="bi bi-arrow-counterclockwise me-2"></i> Reset
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enrollment List -->
+    <div class="col-lg-7">
+      <div class="card glass-card">
+        <div class="card-body">
+          <h5 class="mb-4"><i class="bi bi-table"></i> Enrollment List</h5>
+          <div class="table-responsive">
+            <table class="table table-hover table-custom">
+              <thead>
+                <tr>
+                  <th>Sr no</th>
+                  <th>Enrollment ID</th>
+                  <th>Batch Name</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Using function call in *ngFor -->
+                <tr *ngFor="let item of enrollmentdata(); let sr = index">
+                  <td><strong>{{ sr + 1 }}</strong></td>
+                  <td>{{ item.enrollmentId }}</td>
+                  <td>{{ item.batchName }}</td>
+                  <td>{{ item.enrollmentDate | date:'short' }}</td>
+                  <td>
+                    <span class="badge-status" [ngClass]="item.isActive ? 'badge-active' : 'badge-inactive'">
+                      {{ item.isActive ? 'Active' : 'Inactive' }}
+                    </span>
+                  </td>
+                  <td>
+                    <button class="btn btn-sm btn-warning me-1"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
