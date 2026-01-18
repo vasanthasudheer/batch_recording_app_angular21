@@ -1,187 +1,164 @@
-/* General page styling */
-body {
-    background-color: #f8f9fa; /* light modern background */
-    font-family: 'Roboto', sans-serif;
-    color: #343a40;
-    margin: 0;
-    padding: 0;
-}
-
-/* Container spacing */
+/* ===== Page Background ===== */
 .container-main {
-    padding:15px 10px;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  padding: 24px;
+  border-radius: 16px;
 }
 
-/* Card styling */
+/* ===== Cards ===== */
 .card {
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    background-color: #afecdf;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  background: #ffffff;
 }
 
-/* Card header section */
-.section-hader, .section-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 35px;
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    height:85px;
-    border-radius: 20px;
-    width:10 ;
+.form-card {
+  height: 100%;
 }
 
-.section-hader i, .section-header i {
-    font-size: 1.5rem;
-    color: #0d6efd;
-     align-items: center;
+.table-card {
+  height: 100%;
 }
 
-.section-hader h4, .section-header h4 {
-    font-weight: 600;
-    font-size: 1.25rem;
-    margin: 0;
+/* ===== Section Header ===== */
+.section-hader,
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-/* Form styling */
+.section-hader i,
+.section-header i {
+  font-size: 1.6rem;
+  color: #6f42c1;
+}
+
+.section-hader h4,
+.section-header h4 {
+  margin: 0;
+  font-weight: 600;
+  color: #333;
+}
+
+/* ===== Labels ===== */
 .form-label {
-    font-weight: 500;
-    color: #495057;
+  font-weight: 500;
+  color: #444;
 }
 
-.form-control {
-    border-radius: 8px;
-    padding: 10px 12px;
-    border: 1px solid #ced4da;
-    transition: all 0.3s ease-in-out;
+.form-label i {
+  color: #6f42c1;
+  margin-right: 6px;
 }
 
-.form-control:focus {
-    border-color: #0d6efd;
-    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
-}
-
-/* Form select */
+/* ===== Inputs ===== */
+.form-control,
 .form-select {
-    border-radius: 8px;
-    padding: 10px 12px;
-    border: 1px solid #ced4da;
+  border-radius: 10px;
+  padding: 10px 14px;
+  border: 1px solid #ddd;
 }
 
-/* Switch toggle */
-.form-check-input {
-    width: 50px;
-    height: 25px;
-    cursor: pointer;
+.form-control:focus,
+.form-select:focus {
+  border-color: #6f42c1;
+  box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.25);
 }
 
-/* Buttons */
+/* ===== Switch ===== */
+.form-check-input:checked {
+  background-color: #6f42c1;
+  border-color: #6f42c1;
+}
+
+/* ===== Buttons ===== */
+.btn {
+  border-radius: 10px;
+  font-weight: 500;
+}
+
 .btn-custom {
-    border-radius: 8px;
-    padding: 10px 15px;
-    font-weight: 500;
-    transition: all 0.3s ease;
+  padding: 10px;
 }
 
 .btn-success-custom {
-    background-color: #198754;
-    border: none;
-    color: #fff;
+  background: linear-gradient(135deg, #28a745, #20c997);
+  border: none;
+  color: #fff;
 }
 
 .btn-success-custom:hover {
-    background-color: #19ca77;
+  opacity: 0.9;
 }
 
 .btn-reset-custom {
-    background-color: #bd9213;
-    border: none;
-    color: #343a40;
+  background: #f1f3f5;
+  color: #333;
 }
 
 .btn-reset-custom:hover {
-    background-color: #e0a800;
+  background: #e9ecef;
 }
 
-/* Action buttons in table */
+/* ===== Action Buttons ===== */
 .action-btn {
-    border: none;
-    border-radius: 6px;
-    padding: 5px 10px;
-    margin: 0 2px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: #fff;
+  margin-right: 5px;
 }
 
 .btn-success-customer {
-    background-color: #0dcaf0;
-    color: #fff;
+  background: #198754;
 }
 
 .btn-success-customer:hover {
-    background-color: #31d2f2;
+  background: #157347;
 }
 
-.btn-danger-customer {
-    background-color: #dc3545;
-    color: #fff;
-}
-
-.btn-danger-customer:hover {
-    background-color: #bb2d3b;
-}
-
-/* Table styling */
-.table-card {
-    overflow-x: auto;
-}
-
+/* ===== Table ===== */
 .table {
-    border-collapse: separate;
-    border-spacing: 0 10px;
+  background: #fff;
+}
+
+.table thead {
+  background: #f4f5f7;
 }
 
 .table thead th {
-    background-color: #e9ecef;
-    font-weight: 600;
-    border: none;
+  font-weight: 600;
+  color: #333;
 }
 
-.table tbody tr {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+.table tbody tr:hover {
+  background-color: #f8f9fa;
 }
 
-.table tbody td {
-    vertical-align: middle;
-    padding: 12px;
-    border: none;
-}
-
-/* Status badges */
+/* ===== Status Badge ===== */
 .badge-status {
-    padding: 6px 12px;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    text-align: center;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
 }
 
 .badge-active {
-    background-color: #198754;
-    color: #fff;
+  background: #d1e7dd;
+  color: #0f5132;
 }
 
 .badge-inactive {
-    background-color: #6c757d;
-    color: #fff;
+  background: #f8d7da;
+  color: #842029;
 }
 
-/* Responsive spacing */
-@media (max-width: 992px) {
-    .d-flex {
-        flex-direction: column !important;
-    }
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .container-main {
+    padding: 16px;
+  }
 }

@@ -6,6 +6,7 @@ import { Dashboard } from './pages/dashboard/dashboard';
 import { authGuard } from './core/guard/auth-guard';
 import { Candidates } from './pages/candidates/candidates';
 import { Enrollment } from './pages/enrollment/enrollment';
+import { SessionRecordings } from './pages/session-recordings/session-recordings';
 
 export const routes: Routes = [
   {
@@ -32,6 +33,10 @@ export const routes: Routes = [
        {
         path: 'enrollment',
         component: Enrollment,
+      },
+      {
+        path: 'session-recordings',
+        component: SessionRecordings,
       },
       {
         path: 'dashboard',

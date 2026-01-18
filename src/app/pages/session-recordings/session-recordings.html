@@ -1,0 +1,128 @@
+<div class="container container-main my-4">
+  <div class="row g-4">
+
+    <!-- ================= FORM COLUMN ================= -->
+    <div class="col-lg-4">
+      <div class="card form-card h-100">
+        <div class="card-body p-4">
+
+          <div class="section-header d-flex align-items-center gap-2 mb-3">
+            <i class="bi bi-person-plus-fill"></i>
+            <h4 class="mb-0">Session Management</h4>
+          </div>
+
+          <form [formGroup]="sessionForm" (ngSubmit)="saveSession()">
+
+            <div class="row g-3">
+              <div class="col-md-12">
+                <label for="batchId" class="form-label">Select Batch</label>
+                <select id="batchId" class="form-select" formControlName="batchId">
+                  <option [value]="null" disabled>Select a batch</option>
+                  <option *ngFor="let item of batchList$ | async" [value]="item.batchId">
+                    {{ item.batchName }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row g-3">
+
+              <div class="col-md-12">
+                <label class="form-label">Topic Name</label>
+                <input type="text" class="form-control" formControlName="topicName">
+              </div>
+
+              <div class="col-md-12">
+                <label class="form-label">Topic Description</label>
+                <textarea class="form-control" rows="2" formControlName="topicDescription"></textarea>
+              </div>
+
+              <div class="col-md-12">
+                <label class="form-label">Duration (Minutes)</label>
+                <input type="number" class="form-control" formControlName="durationInMinutes">
+              </div>
+
+              <div class="col-md-12">
+                <label class="form-label">Session Date</label>
+                <input type="datetime-local" class="form-control" formControlName="sessionDate">
+              </div>
+
+              <div class="col-md-12">
+                <label class="form-label">YouTube Video ID</label>
+                <input type="text" class="form-control" formControlName="youtubeVideoId">
+              </div>
+
+              <div class="col-md-12">
+                <label class="form-label">Display Order</label>
+                <input type="number" class="form-control" formControlName="displayOrder">
+              </div>
+
+              <div class="mt-4 d-flex gap-2">
+                @if(sessionForm.controls['sessionId'].value)
+                {
+                <button type="button" class="btn btn-warning w-100" (click)=" OnUpdateSession()">
+                  Updatesession
+                </button>
+                }
+                @else
+                {
+                <button type="submit" class="btn btn-success w-100">
+                  Add/Save Session
+                </button>
+                }
+                <button type="button" class="btn btn-secondary" (click)="resetForm()">
+                  Reset
+                </button>
+              </div>
+
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+    <!-- ================= END FORM COLUMN ================= -->
+
+
+    <!-- ================= SESSIONS LIST COLUMN ================= -->
+    <div class="col-lg-8">
+      <div class="row g-3">
+
+        <div *ngFor="let session of sessionsdata(); let sr = index" class="col-md-6 col-xl-4">
+          <div class="card shadow-sm h-100 session-card">
+            <div class="card-body">
+
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="fw-bold mb-0">
+                  <i class="bi bi-book-fill me-1"></i>{{ session.topicName }}
+                </h6>
+              </div>
+
+              <p class="mb-1 text-muted">{{ session.topicDescription }}</p>
+              <p class="mb-1 text-muted">
+                <i class="bi bi-youtube me-1 text-danger"></i>{{ session.youtubeVideoId }}
+              </p>
+              <p class="mb-1 text-muted"><strong>Batch:{{ session.batchId }}</strong> </p>
+              <p class="mb-1 text-muted"><strong>Date: {{ session.sessionDate | date:'short' }}</strong></p>
+              <p class="mb-2 text-muted"><strong>Duration: {{ session.durationInMinutes }}</strong></p>
+
+              <div class="d-flex justify-content-end gap-2">
+                <button class="btn btn-warning btn-sm" (click)="editSession(session)">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button class="btn btn-danger btn-sm" (click)="deleteSession(session.sessionId)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+</div>

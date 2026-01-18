@@ -48,7 +48,7 @@ export class Candidates implements OnInit, OnDestroy {
         if (res.result) {
           alert("Candidate create successfully");
           this.getCandidates();
-          this
+         
         } else {
           alert(res.message)
         }
@@ -81,7 +81,7 @@ export class Candidates implements OnInit, OnDestroy {
     },
     error: (err) => {
       console.error(err);
-      alert('Update failed');
+      alert(err.error.message);
     }
   });
 }
@@ -90,9 +90,9 @@ export class Candidates implements OnInit, OnDestroy {
   onEdit(from:CandidatesModel){
     this.candidateForm.setValue(from)
   }
-  ondelete (id: number){
-   
 
+  
+  ondelete (id: number){
   const isDelete = confirm('Are you sure you want to delete this candidate?');
   if (!isDelete) return;
 

@@ -35,9 +35,9 @@ export class Enrollment implements OnInit {
 
 
   constructor() {
- 
- this.initializeForm();
-}
+
+    this.initializeForm();
+  }
 
  
 
@@ -49,6 +49,15 @@ export class Enrollment implements OnInit {
     )
 
   }
+   OnEdit(from: enrollmentModel) {
+  this.enrollmetForm.patchValue({
+    enrollmentId: from.enrollmentId,
+    batchName: from.batchName,
+    fullName: from.fullName   ,
+    enrollmentDate: from.enrollmentDate,
+    isActive: from.isActive
+  });
+}
 
   initializeForm()  {
   this.enrollmetForm = this.formBuilder.group({
@@ -94,6 +103,37 @@ export class Enrollment implements OnInit {
     })
   }
 
+  OnUpdateEnrollment() {
+    debugger
+    this.enrollmentSrv.updateNewEnrollment(this.enrollmetForm.value).subscribe({
+      next: ( result: IAPIResponse) => {
+        alert('updated successfull');
+        this.getAllEnrollments();
+        this.resetForm()
+      },
+      error: (error) => {
+        alert(error.error.message)
+      }
+
+    });
+  }
+  onDelete(enrollmentId:number){
+    debugger
+     const isDelete = confirm('Are you sure you want to delete this batch?');
+    if (isDelete) {
+    this.enrollmentSrv. deleteNewEnrollment(enrollmentId).subscribe({
+      next: (result: IAPIResponse) => {
+        alert('deleted successfull');
+        this.getAllEnrollments();
+      },
+      error: (error) => {
+        alert(error.error.message)
+      }
+    });
  
-  resetForm() { }
+     }
+  }
+  resetForm() {
+    this.initializeForm();
+  }
 }

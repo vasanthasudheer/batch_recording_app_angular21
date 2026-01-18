@@ -2,10 +2,11 @@ import { inject, Injectable } from '@angular/core';
 import { enrollmentModel } from '../../../../model/classes/enrollment.Model';
 import { Observable } from 'rxjs';
 import { IAPIResponse } from '../../../../model/interfaces/Common.Model';
-import { ApiMethodconstant } from '../../../../constant/Global.constant';
+import { ApiMethodconstant, Method_Names } from '../../../../constant/Global.constant';
 import { environment } from '../../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { BatchModel } from '../../../../model/classes/Batch.Model';
+
 
 @Injectable({
   providedIn: 'root',
@@ -15,13 +16,33 @@ export class EnrollmentService {
   
   getAllEnrollments(): Observable<IAPIResponse> {
     return this.http.get<IAPIResponse>(
-      environment.API_URL + ApiMethodconstant.GETALLENROLLMENT);
-   
+      environment.API_URL +
+      ApiMethodconstant.ENROLLMENT + '/' +
+      Method_Names.ENROLLMENT.GETALLENROLLMENT
+    );
+
   }
 
   createNewEnrollment(obj: enrollmentModel): Observable<IAPIResponse> {
     debugger;
-    return this.http.post<IAPIResponse>(environment.API_URL + ApiMethodconstant.ENROLLMENT, obj);
+    return this.http.post<IAPIResponse>(environment.API_URL + ApiMethodconstant.ENROLLMENT , obj);
   }
+
+  
+  //  updateNewEnrollment(data:any):Observable<IAPIResponse>{
+  //   return this.http.put<IAPIResponse>(environment.API_URL + ApiMethodconstant.ENROLLMENT +'/', data);
+  //  }
+ updateNewEnrollment(data: any): Observable<IAPIResponse> {
+  return this.http.put<IAPIResponse>(
+    `${environment.API_URL}${ApiMethodconstant.ENROLLMENT}/${data.enrollmentId}`,
+    data
+  );
+}
+
+
+
+   deleteNewEnrollment(enrollmentId:number):Observable<IAPIResponse>{
+    return this.http.delete<IAPIResponse>(environment.API_URL + ApiMethodconstant.ENROLLMENT +'/' +enrollmentId)
+   }
   
 }

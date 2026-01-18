@@ -9,7 +9,7 @@
 
           <form [formGroup]="enrollmetForm" (ngSubmit)="onSaveEnrollment()">
 
-            <!-- Batch Selection -->
+            <!-- Batch Selection -->.
             <div class="mb-3">
               <label for="batchId" class="form-label">Select Batch</label>
               <select id="batchId" class="form-select" formControlName="batchId">
@@ -47,13 +47,24 @@
 
             <!-- Buttons -->
             <div class="d-flex gap-2">
-              <button type="submit" class="btn btn-btn-success-custom">
-                <i class="bi bi-save me-2"></i> Save
+              @if(enrollmetForm.controls['enrollmentId'].value){
+              <button type="button" class="btn btn-warning" (click)="OnUpdateEnrollment()">
+                Update Enrollment
               </button>
+              }
+              @else{
+              <button type="submit" class="btn btn-success">
+                Save Enrollment
+              </button>
+              }
+
               <button type="button" class="btn btn-secondary-custom" (click)="resetForm()">
                 <i class="bi bi-arrow-counterclockwise me-2"></i> Reset
               </button>
             </div>
+
+
+            
 
           </form>
         </div>
@@ -90,8 +101,8 @@
                     </span>
                   </td>
                   <td>
-                    <button class="btn btn-sm btn-warning me-1"><i class="bi bi-pencil"></i></button>
-                    <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                    <button class="btn btn-sm btn-warning me-1" (click)="OnEdit( item )"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-danger" (click)="onDelete(item.enrollmentId)"><i class="bi bi-trash"></i></button>
                   </td>
                 </tr>
               </tbody>

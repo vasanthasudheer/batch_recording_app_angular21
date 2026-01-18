@@ -15,7 +15,8 @@ export class BatchMaster implements OnInit, OnDestroy {
   newBatchObj: BatchModel = new BatchModel()
   batchSrv = inject(BatchService);
   BatchList = signal<BatchModel[]>([])
-  subscription: Subscription = new Subscription()
+  subscription: Subscription = new Subscription();
+  loadding = signal<boolean>(false);
 
 
   ngOnInit(): void {
@@ -24,9 +25,11 @@ export class BatchMaster implements OnInit, OnDestroy {
 
 
   loadBatches() {
+    this.loadding.set(true)
     this.subscription = this.batchSrv.getAllBatches().subscribe({
       next: (result: IAPIResponse) => {
         this.BatchList.set(result.data)
+
       }
     })
   }
@@ -48,55 +51,56 @@ export class BatchMaster implements OnInit, OnDestroy {
     })
   }
   editBatch(data: any) {
-    this.newBatchObj = data
+    this.newBatchObj = data;
+
   }
   UpdateBatch() {
     this.batchSrv.UpdateBatch(this.newBatchObj).subscribe({
-    next: (result: IAPIResponse) => {
-     debugger
-      if (result.result) {
-        alert(result.message || 'Batch updated successfully');
-        this.resetForm();
-        this.loadBatches();
-      } else {
-        alert('Update failed: ' + (result.message || 'Unknown error'));
-      }
-    },
-    error: (error) => {
-      debugger
-      alert('API Error: ' + (error?.error?.message || error?.message || 'Unknown error'));
-    }
-  });
-  }
-
-  deleteBatch(batchId: number) {
- debugger
-
-  if (!batchId || batchId <= 0) {
-    alert('Invalid batch ID');
-    return;
-  }
-
-  const isDelete = confirm('Are you sure you want to delete this batch?');
-  if (isDelete) {
-    this.batchSrv.DeleteBatch(batchId).subscribe({
-      next: (res) => {
+      next: (result: IAPIResponse) => {
         debugger
-        alert('Batch deleted successfully');
-        this.loadBatches();
+        if (result.result) {
+          alert(result.message || 'Batch updated successfully');
+          this.resetForm();
+          this.loadBatches();
+        } else {
+          alert('Update failed: ' + (result.message || 'Unknown error'));
+        }
       },
-      error: (err) => {
-        console.error(err);
-        alert('Delete failed');
+      error: (error) => {
+        debugger
+        alert('API Error: ' + (error?.error?.message || error?.message || 'Unknown error'));
       }
     });
   }
-}
 
-  resetForm(){
- this.newBatchObj = new BatchModel();
+  deleteBatch(batchId: number) {
+    debugger
+
+    if (!batchId || batchId <= 0) {
+      alert('Invalid batch ID');
+      return;
+    }
+
+    const isDelete = confirm('Are you sure you want to delete this batch?');
+    if (isDelete) {
+      this.batchSrv.DeleteBatch(batchId).subscribe({
+        next: (res: IAPIResponse) => {
+          debugger
+          alert('Batch deleted successfully');
+          this.loadBatches();
+        },
+        error: (err) => {
+        
+          alert('Delete failed');
+        }
+      });
+    }
+  }
+
+  resetForm() {
+    this.newBatchObj = new BatchModel();
   }
   ngOnDestroy(): void {
-       this.subscription.unsubscribe();
-    }
+    this.subscription.unsubscribe();
+  }
 }

@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject,  } from '@angular/core';
+import { Component, inject, signal,  } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Globalconstat } from '../../constant/Global.constant';
+import { GlobalConstant } from '../../constant/Global.constant';
+import { LoginModel } from '../../model/classes/login.Model';
+import { LoginService } from '../../core/guard/services/login/login-service';
 
 @Component({
   selector: 'app-login',
@@ -12,26 +14,29 @@ import { Globalconstat } from '../../constant/Global.constant';
 })
 export class Login {
  
-  loginObj: any = {
-    "email": " ",
-    "password": " "
-  }
+loginobj: LoginModel = {
+  email: '',
+  password: ''
+};
+
+     
   http = inject(HttpClient)
   router=inject(Router)
+  loginsrv=inject(LoginService)
   Onlogin() {
     debugger
-    this.http.post("https://feestracking.freeprojectapi.com/api/BatchUser/login", this.loginObj).subscribe({
+    this.loginsrv.login(this.loginobj).subscribe({
       next: (result: any) => {
         debugger
-        localStorage.setItem(Globalconstat.LOCAL_KEY_LOGIN, JSON.stringify(result.data))
-    //  this.router.navigateByUrl('dashboard')
-   this.router.navigate(['/dashboard']);
+        localStorage.setItem(GlobalConstant.LOCAL_KEY_LOGIN, JSON.stringify(result.data))
+        //  this.router.navigateByUrl('dashboard')
+        this.router.navigate(['/dashboard']);
 
       },
-      error: (err => {
+      error: (err) => {
         debugger
-        alert('err.error.message')
-      })
+        alert(err.error.message || 'Login failed')
+      }
 
 
     })
