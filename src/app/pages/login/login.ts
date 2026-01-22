@@ -29,6 +29,7 @@ loginobj: LoginModel = {
       next: (result: any) => {
         debugger
         localStorage.setItem(GlobalConstant.LOCAL_KEY_LOGIN, JSON.stringify(result.data))
+        localStorage.setItem('batchtoken', result.token)
         //  this.router.navigateByUrl('dashboard')
         this.router.navigate(['/dashboard']);
 

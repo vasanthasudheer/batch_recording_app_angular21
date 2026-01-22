@@ -13,7 +13,7 @@ import { BatchModel } from '../../../../model/classes/Batch.Model';
 })
 export class EnrollmentService {
   http = inject(HttpClient)
-  
+
   getAllEnrollments(): Observable<IAPIResponse> {
     return this.http.get<IAPIResponse>(
       environment.API_URL +
@@ -25,24 +25,31 @@ export class EnrollmentService {
 
   createNewEnrollment(obj: enrollmentModel): Observable<IAPIResponse> {
     debugger;
-    return this.http.post<IAPIResponse>(environment.API_URL + ApiMethodconstant.ENROLLMENT , obj);
+    return this.http.post<IAPIResponse>(environment.API_URL + ApiMethodconstant.ENROLLMENT, obj);
   }
 
-  
-  //  updateNewEnrollment(data:any):Observable<IAPIResponse>{
-  //   return this.http.put<IAPIResponse>(environment.API_URL + ApiMethodconstant.ENROLLMENT +'/', data);
-  //  }
- updateNewEnrollment(data: any): Observable<IAPIResponse> {
-  return this.http.put<IAPIResponse>(
-    `${environment.API_URL}${ApiMethodconstant.ENROLLMENT}/${data.enrollmentId}`,
-    data
-  );
-}
+  updateNewEnrollment(data: any): Observable<IAPIResponse> {
+    return this.http.put<IAPIResponse>(
+      `${environment.API_URL}${ApiMethodconstant.ENROLLMENT}/${data.enrollmentId}`,
+      data
+    );
+  }
+
+  deleteNewEnrollment(enrollmentId: number): Observable<IAPIResponse> {
+    return this.http.delete<IAPIResponse>(environment.API_URL + ApiMethodconstant.ENROLLMENT + '/' + enrollmentId)
+  }
 
 
+  //for getting enrollment by candidate id
 
-   deleteNewEnrollment(enrollmentId:number):Observable<IAPIResponse>{
-    return this.http.delete<IAPIResponse>(environment.API_URL + ApiMethodconstant.ENROLLMENT +'/' +enrollmentId)
-   }
-  
+  getEnrollmentsBatchByCandidateId(Id: number): Observable<IAPIResponse> {
+    return this.http.get<IAPIResponse>(environment.API_URL + ApiMethodconstant.ENROLLMENT +
+      '/' + Method_Names.ENROLLMENT.GET_ENROLLMENT_BY_CANDIDATE + '/' + Id)
+
+  }
+ getSessionRecordingbyBatchId(Id: number): Observable<IAPIResponse> {
+    return this.http.get<IAPIResponse>(environment.API_URL + ApiMethodconstant.SESSIONS + 
+      '/' + Method_Names.SESSIONS.GET_SESSIONS_BY_BATCHID + '/' + Id)
+  }
+ 
 }

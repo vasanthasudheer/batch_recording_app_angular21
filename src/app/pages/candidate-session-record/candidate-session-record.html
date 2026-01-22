@@ -1,0 +1,71 @@
+<div class="container py-5 main-container">
+  <!-- Enrolled Batches -->
+  <div id="batchesView" class="view active">
+    <div class="text-center mb-4">
+      <h2 class="header-title">My Enrolled Batches</h2>
+
+      <div class="batch-buttons">
+        @for(item of enrollmentList();track $index){
+        <button class="btn btn-success" (click)="getSessionRecording(item.batchId)">{{item.batchId}}</button>
+        }
+      </div>
+    </div>
+
+    <!-- Session Recordings -->
+    <div class="row g-4">
+      @for(session of SessionList();track $index){
+      <div class="col-lg-6">
+        <div class="batch-card">
+          <div class="batch-card-header">
+            <div class="batch-name">{{session. topicName}}</div>
+            <div class="batch-code">{{session. sessionDate}}</div>
+          </div>
+
+          <div class="batch-card-body">
+            <p class="batch-description">
+              {{session.topicDescription}}
+            </p>
+
+            <button class="btn btn-primary-custom mt-3" (click)="openModal(session.videoId)">
+              ▶ View Recording {{ session.youtubeVideoId}}
+            </button>
+          </div>
+
+        </div>
+
+
+      </div>
+      }
+
+
+    </div>
+  </div>
+</div>
+<!-- The Modal -->
+<div class="modal" #VideoModel>
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="btn-close" (click)="closeModal()" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body"  >
+         
+        <div class="video-container">
+          <iframe width="560" height="315" [src]="VideoUrl" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>

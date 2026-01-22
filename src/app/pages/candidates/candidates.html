@@ -118,7 +118,7 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr *ngFor="let candidate of candidateList ; let sr = index">
+                                    <tr *ngFor="let candidate of candidateList() ; let sr = index">
                                         <td><strong>{{ sr + 1 }}</strong></td>
                                         <td>{{ candidate.fullName }}</td>
                                         <td>{{ candidate.email }}</td>

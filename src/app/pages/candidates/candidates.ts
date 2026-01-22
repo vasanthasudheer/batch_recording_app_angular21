@@ -18,8 +18,8 @@ export class Candidates implements OnInit, OnDestroy {
   candidateSrv = inject(CandidateSerives)
   
     subscription: Subscription = new Subscription()
-  //  candidateList = signal<CandidatesModel[]>([]);
-        candidateList:CandidatesModel[]= [];
+  candidateList = signal<CandidatesModel[]>([]);
+         // candidateList:CandidatesModel[]= [];
 
   constructor() {
     this.initializeForm();
@@ -34,7 +34,7 @@ export class Candidates implements OnInit, OnDestroy {
   getCandidates() {
   this.subscription=  this.candidateSrv.getAllCandidates().subscribe({
       next: (res: IAPIResponse) => {
-        this.candidateList = res.data
+        this.candidateList.set(res.data)
       }
     })
   }

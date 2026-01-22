@@ -6,35 +6,59 @@
         </button>
         <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
+
+                @if (userser.loggedUserData$ | async; as user) {
+
+                @if (user.role === roleEnum.SUPER_ADMIN_ROLE) {
                 <li class="nav-item">
-                    <a class="nav-link" routerLink= "dashboard"> Dashboard</a>
+                    <a class="nav-link" routerLink="dashboard">Dashboard</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="batch">BatchMaster</a>
                 </li>
-                
                 <li class="nav-item">
                     <a class="nav-link" routerLink="candidate">Candidates</a>
                 </li>
-                 <li class="nav-item">
-                    <a class="nav-link" routerLink="enrollment"> Enrollment</a>
-                </li>
-                
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="session-recordings"> Session Recordings</a>
+                    <a class="nav-link" routerLink="enrollment">Enrollment</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="session-recordings">Session Recordings</a>
+                </li>
+                } @else {
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="candidate-dashboard">Candidate-dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="candidates-recordings"> CandidateSessionRecord</a>
+                </li>
+                }
 
-                 
+                }
+
             </ul>
-            <form class="d-flex">
 
-                 <select name="" id="" (change)="onRoleChanhe( )"  class="">
-                    <option value="Guest">Guest</option>
-                     <option value="Admin">Admin</option>
-                 </select>
-                 <button class="btn btn outline-white text-white" type="button">{{loggedUserData?.email}}</button>
-                 <button class="btn btn-primary" type="button" (click)="OnLogoff()">LogOff</button>
-            </form>
+            <div class="collapse navbar-collapse" id="mynavbar">
+                <div class="d-flex ms-auto">
+                    <form class="d-flex">
+
+                        <select name="" id="" (change)="onRoleChanhe($event)" class="">
+                            <option value="Guest">Guest</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                        <!-- <ng-container *ngIf="userser.loggedUserData$ | async as user"> -->
+                        @if (userser.loggedUserData$ | async; as user) {
+                        <button class="btn btn-outline-white text-white" type="button">
+                            {{ user.email }}
+                        </button>
+                        }
+
+                        <!-- </ng-container> -->
+                        <button class="btn btn-primary" type="button" (click)="OnLogoff()">LogOff</button>
+
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </nav>

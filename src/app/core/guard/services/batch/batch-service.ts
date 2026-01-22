@@ -11,6 +11,8 @@ import { IAPIResponse  } from '../../../../model/interfaces/Common.Model';
 })
 export class BatchService {
   http=inject(HttpClient)
+  roleSub: any;
+  RoleBehaviorSub: any;
   createNewBatch(obj:BatchModel) :Observable<IAPIResponse>{
       debugger
     return this.http.post<IAPIResponse>(environment.API_URL + ApiMethodconstant.BATCH, obj)

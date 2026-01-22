@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../../../environments/environment';
-import { ApiMethodconstant } from '../../../../constant/Global.constant';
+import { ApiMethodconstant, Method_Names } from '../../../../constant/Global.constant';
 import { ISession } from '../../../../model/interfaces/Session.Module';
 import { Observable } from 'rxjs';
 import { IAPIResponse } from '../../../../model/interfaces/Common.Model';
@@ -34,5 +34,9 @@ export class RecordingService {
   deleteSession(Id: number): Observable<IAPIResponse> {
     return this.http.delete<IAPIResponse>(environment.API_URL + ApiMethodconstant.SESSIONS + `/${Id}`)
   }
+  getALlsessionsRecordingByBatchId(batchId: number): Observable<IAPIResponse> {
+  return this.http.get<IAPIResponse>( environment.API_URL + ApiMethodconstant.SESSIONS +'/'+ Method_Names.SESSIONS.GET_SESSIONS_BY_BATCHID + `/${batchId}` )
+}
+ 
 
 }
