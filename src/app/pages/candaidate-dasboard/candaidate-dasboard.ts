@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 
 @Component({
   selector: 'app-candaidate-dasboard',
@@ -10,5 +10,6 @@ export class CandaidateDasboard implements OnInit{
   ngOnInit(): void {
     
   }
+  
 
 }

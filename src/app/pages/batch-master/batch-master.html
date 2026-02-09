@@ -6,15 +6,24 @@
       <h4 class="mb-0"><i class="bi bi-table"></i> Batch List</h4>
     </div>
     <div class="card-body">
-
-      <!-- Search Box -->
-      <div class="search-box mb-3">
-        <i class="bi bi-search"></i>
-        <input type="text" class="form-control" name="Search" placeholder="Search batches...">
-      </div>
+ 
 
       <!-- Table -->
       <div class="table-responsive">
+        @if (loadding()) {
+  <table class="table table-custom">
+    <tbody>
+      @for (i of [1,2,3, ]; track i) {
+        <tr>
+          <td colspan="7">
+            <div class="skeleton-row"></div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}
+
         <table class="table table-hover table-custom">
           <thead>
             <tr>
@@ -75,33 +84,58 @@
                 <label for="batchName" class="form-label">
                   <i class="bi bi-tag"></i> Batch Name
                 </label>
-                <input type="text" [(ngModel)]="newBatchObj.batchName" name="batchName"
-                  class="form-control" id="batchName" placeholder="Enter batch name" required>
-              </div>
+                <input type="text" [(ngModel)]="newBatchObj.batchName" #batchName="ngModel" name="batchName" class="form-control"
+                  id="batchName" required minlength="6" placeholder="Enter batch name" required>
+                </div>
+                
+                <div class="text-danger mt-1" *ngIf="batchName.invalid && batchName.touched">
+                  <div *ngIf="batchName.errors?.['required']">
+                    Batch Name is required
+                  </div>
+                  <div *ngIf="batchName.errors?.['minlength']">
+                    Minimum 3 characters required
+                  </div>
+                </div>
             </div>
 
             <div class="mb-3">
               <label for="description" class="form-label">
                 <i class="bi bi-text-paragraph"></i> Description
               </label>
-              <textarea [(ngModel)]="newBatchObj.description" name="description" class="form-control"
-                id="description" rows="3" placeholder="Enter batch description" required></textarea>
+              <textarea [(ngModel)]="newBatchObj.description" #description="ngModel" name="description" class="form-control" id="description"
+                rows="3" placeholder="Enter batch description" required minlength="5"></textarea>
             </div>
+
+            <div class="text-danger mt-1" *ngIf="description.invalid && description.touched">
+              <div *ngIf="description.errors?.['required']">
+                Description is required
+              </div>
+              <div *ngIf="description.errors?.['minlength']">
+                Minimum 5 characters required
+              </div>
+            </div>
+
+
 
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="startDate" class="form-label">
                   <i class="bi bi-calendar-check"></i> Start Date
                 </label>
-                <input type="date" [(ngModel)]="newBatchObj.startDate" name="startDate"
-                  class="form-control" id="startDate" required>
-              </div>
+                <input type="date" #startDate="ngModel" [(ngModel)]="newBatchObj.startDate" name="startDate" class="form-control"
+                  id="startDate" required>
+                </div>
+                <div class="text-danger mt-1" *ngIf="startDate.invalid && startDate.touched">
+                  Start Date is required
+                </div>
+
+
               <div class="col-md-6 mb-3">
-                <label for="endDate" class="form-label">
+                <label for="endDate"  class="form-label">
                   <i class="bi bi-calendar-x"></i> End Date
                 </label>
-                <input type="date" [(ngModel)]="newBatchObj.endDate" name="endDate"
-                  class="form-control" id="endDate" required>
+                <input type="date" [(ngModel)]="newBatchObj.endDate" name="endDate" class="form-control" id="endDate"
+                  required>
               </div>
             </div>
 

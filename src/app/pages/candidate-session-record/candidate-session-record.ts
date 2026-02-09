@@ -26,13 +26,13 @@ export class CandidateSessionRecord implements OnInit {
   constructor(private sanitizer:  DomSanitizer) {
     const localData=localStorage.getItem(GlobalConstant.LOCAL_KEY_LOGIN)
     if(localData != null){
-     this. loggedUserData=JSON.parse(localData);
+     this.loggedUserData=JSON.parse(localData);
       this.getBatchesByCandidate(this.loggedUserData.candidateId);
     }
-    this.usersrv.loggedUserData$.subscribe((res: CandidatesModel) => {
+    // this.usersrv.loggedUserData$.subscribe((res: CandidatesModel) => {
 
-      this.getBatchesByCandidate(res.candidateId);
-    })
+    //   this.getBatchesByCandidate(res.candidateId);
+    // })
 
   }
 

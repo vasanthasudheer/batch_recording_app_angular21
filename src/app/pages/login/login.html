@@ -11,18 +11,48 @@
                     <i class="bi bi-envelope-fill me-2"></i>
                     Email ID
                 </label>
-                <input type="email" [(ngModel)]="loginobj.email" name="email" class="form-control"
-                    placeholder="Enter your email">
+                <input type="email" [(ngModel)]="loginobj.email" name="email" required minlength="10" maxlength="30"
+                    pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" class="form-control" placeholder="Enter your email"
+                    #email="ngModel" />
             </div>
+            <div class="text-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+
+                <span *ngIf="email.errors?.['required']">
+                    This is a required field.
+                </span>
+
+                <span *ngIf="email.errors?.['pattern']">
+                    Please enter a valid email address.
+                </span>
+
+                <span *ngIf="email.errors?.['minlength']">
+                    Email must be at least 10 characters.
+                </span>
+
+            </div>
+
+
 
             <div class="mb-3">
                 <label class="form-label">
                     <i class="bi bi-lock-fill me-2"></i>
                     Password
                 </label>
-                <input type="password" [(ngModel)]="loginobj.password" name="password" class="form-control"
-                    placeholder="Enter your password">
-            </div>
+                <input type="password" [(ngModel)]="loginobj.password" name="password" required minlength="2" maxlength="20"
+                    class="form-control" placeholder="Enter your password" #password="ngModel" />
+                
+                </div>
+                <div class="text-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
+                
+                    <span *ngIf="password.errors?.['required']">
+                        Password is required.
+                    </span>
+                
+                    <span *ngIf="password.errors?.['minlength']">
+                        Password must be at least2 characters.
+                    </span>
+                
+                </div>
 
             <button type="button" (click)="Onlogin()" class="btn btn-login w-100 text-white">
                 <i class="bi bi-box-arrow-in-right me-2"></i>

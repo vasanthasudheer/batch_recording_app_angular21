@@ -5,10 +5,12 @@ import { Router } from '@angular/router';
 import { GlobalConstant } from '../../constant/Global.constant';
 import { LoginModel } from '../../model/classes/login.Model';
 import { LoginService } from '../../core/guard/services/login/login-service';
+import { NgIf } from '@angular/common';
+ 
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule],
+  imports: [FormsModule,NgIf],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -23,23 +25,37 @@ loginobj: LoginModel = {
   http = inject(HttpClient)
   router=inject(Router)
   loginsrv=inject(LoginService)
-  Onlogin() {
-    debugger
-    this.loginsrv.login(this.loginobj).subscribe({
-      next: (result: any) => {
-        debugger
-        localStorage.setItem(GlobalConstant.LOCAL_KEY_LOGIN, JSON.stringify(result.data))
-        localStorage.setItem('batchtoken', result.token)
-        //  this.router.navigateByUrl('dashboard')
-        this.router.navigate(['/dashboard']);
+ Onlogin() {
 
-      },
-      error: (err) => {
-        debugger
-        alert(err.error.message || 'Login failed')
-      }
-
-
-    })
+  if (!this.loginobj.email) {
+    alert('Email is required');
+    return;
   }
+
+  if (!this.loginobj.password) {
+    alert('Password is required');
+    return;
+  }
+
+  // Optional: email format check
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(this.loginobj.email)) {
+    alert('Enter a valid email');
+    return;
+  }
+
+  this.loginsrv.login(this.loginobj).subscribe({
+    next: (result: any) => {
+      localStorage.setItem(
+        GlobalConstant.LOCAL_KEY_LOGIN,
+        JSON.stringify(result.data)
+      );
+      localStorage.setItem('batchtoken', result.token);
+      this.router.navigate(['/dashboard']);
+    },
+    error: (err) => {
+      alert(err.error.message || 'Login failed');
+    }
+  });
+}
 }
